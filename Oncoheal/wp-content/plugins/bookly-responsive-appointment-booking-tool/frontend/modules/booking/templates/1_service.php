@@ -28,9 +28,10 @@ echo $progress_tracker;
                     <?php echo esc_html( Common::getTranslatedOption( 'bookly_l10n_required_service' ) ) ?>
                 </div>
             </div>
-            <div class="bookly-form-group">
-                <label><?php echo Common::getTranslatedOption( 'bookly_l10n_label_employee' ) ?></label>
-                <div>
+            <div class="bookly-form-group" id="employee" style="
+    display: none !important;">
+                <label style="display: none !important;"><?php echo Common::getTranslatedOption( 'bookly_l10n_label_employee' ) ?></label>
+                <div style="display: none !important;">
                     <select class="bookly-select-mobile bookly-js-select-employee">
                         <option value=""><?php echo Common::getTranslatedOption( 'bookly_l10n_option_employee' ) ?></option>
                     </select>

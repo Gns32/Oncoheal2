@@ -229,10 +229,11 @@ class EasyWPSMTP {
 			/* Set the SMTPSecure value, if set to none, leave this blank */
 			if ( 'none' !== $this->opts['smtp_settings']['type_encryption'] ) {
 				$mail->SMTPSecure = $this->opts['smtp_settings']['type_encryption'];
+				//$mail->SMTPSecure = 'tls';
 			}
 
 			/* PHPMailer 5.2.10 introduced this option. However, this might cause issues if the server is advertising TLS with an invalid certificate. */
-			$mail->SMTPAutoTLS = false;
+			$mail->SMTPAutoTLS = true;
 
 			if ( isset( $this->opts['smtp_settings']['insecure_ssl'] ) && false !== $this->opts['smtp_settings']['insecure_ssl'] ) {
 				// Insecure SSL option enabled
@@ -248,6 +249,7 @@ class EasyWPSMTP {
 			/* Set the other options */
 			$mail->Host = $this->opts['smtp_settings']['host'];
 			$mail->Port = $this->opts['smtp_settings']['port'];
+			
 
                         //Add reply-to if set in settings.
 			if ( ! empty( $this->opts['reply_to_email'] ) ) {
@@ -278,9 +280,10 @@ class EasyWPSMTP {
 			$mail->SMTPDebug   = 1;
 			//set reasonable timeout
 			$mail->Timeout = 10;
-
+			
 			/* Send mail and return result */
 			$mail->Send();
+			
 			$mail->ClearAddresses();
 			$mail->ClearAllRecipients();
 		} catch ( \Exception $e ) {
