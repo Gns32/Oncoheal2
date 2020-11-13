@@ -5,22 +5,45 @@ use Bookly\Lib\Utils\Common;
 echo $progress_tracker;
 ?>
 <div class="bookly-service-step">
-    <div class="bookly-box bookly-bold"><?php echo $info_text ?></div>
-    <div class="bookly-mobile-step-1 bookly-js-mobile-step-1">
+<!--<style>
+.bookly-table{
+Display : none !important;
+}
+</style>-->
+    <div class="bookly-box bookly-bold"><?php //echo $info_text ?></div>
+    <div class="bookly-mobile-step-1 bookly-js-mobile-step-1" style ="Display:none;" >
         <div class="bookly-js-chain-item bookly-js-draft bookly-table bookly-box" style="display: none;">
             <?php Proxy\Shared::renderChainItemHead() ?>
             <div class="bookly-form-group">
                 <label><?php echo Common::getTranslatedOption( 'bookly_l10n_label_category' ) ?></label>
                 <div>
-                    <select class="bookly-select-mobile bookly-js-select-category">
+                    <select class="bookly-select-mobile bookly-js-select-category" id="program" onload ="SelectProgram()" >
                         <option value=""><?php echo esc_html( Common::getTranslatedOption( 'bookly_l10n_option_category' ) ) ?></option>
                     </select>
+					
+					<?php Print_r($_GET) ;?>
+					<script>
+						jQuery( document ).ready(  function() {
+						const myString = window.location.href;
+								const stringLength = myString.length; // this will be 16
+								var val = myString.charAt(stringLength - 1);
+								//alert(val);
+								
+								setTimeout(function(){ 
+								jQuery('.bookly-js-select-category').val(val) 
+								jQuery('.bookly-js-select-service').val(val)
+								}, 1000);
+								
+						});
+						
+						
+					</script>
                 </div>
             </div>
             <div class="bookly-form-group">
                 <label><?php echo Common::getTranslatedOption( 'bookly_l10n_label_service' ) ?></label>
                 <div>
-                    <select class="bookly-select-mobile bookly-js-select-service">
+                    <select class="bookly-select-mobile bookly-js-select-service" >
                         <option value=""><?php echo esc_html( Common::getTranslatedOption( 'bookly_l10n_option_service' ) ) ?></option>
                     </select>
                 </div>

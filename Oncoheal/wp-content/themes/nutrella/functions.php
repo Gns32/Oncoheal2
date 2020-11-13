@@ -4,7 +4,7 @@
  *
  * @package Nutrella
  */
-
+include('custom-shortcode.php');
 if ( ! function_exists( 'nutrella_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -188,3 +188,5 @@ function fix_svg() {
         </style>';
 }
 add_action( 'admin_head', 'fix_svg' );
+
+
